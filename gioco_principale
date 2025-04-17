@@ -1,0 +1,393 @@
+ #include <cstdlib>
+#include <iostream>
+#include <conio.h>
+#include <ctime>
+#include <windows.h>
+
+#define R 11
+#define C 31
+
+using namespace std;
+
+void vedimatrice(char mat[R][C], bool cosa, int r, int c, int rand1, int rand2, int r2, int c2)
+{
+   int i,j;  
+   for(i=0;i<R;i++)
+   {
+      for(j=0;j<C;j++)
+      {
+         if(cosa)
+         { 
+            if((i==r && j==c) || (i==r2 && j==c2))
+            {                  
+               cout << '@' << " ";                         
+            }
+            else
+            {
+            if(i==rand1 && j==rand2){
+         		cout<<'P'<<" ";
+			 }
+			 else{
+			 	if(i==R/2 && j==C/2){
+			 		cout<<"0"<<" ";
+				 }
+				 else{
+				 	cout << mat[i][j] << " ";  
+				 }
+			 	
+			 }                         
+            }       
+         }
+         else
+         {
+         	if(j==0 || j==C-1) mat[i][j] = '|';
+			else{
+			 	if((i==0 && j>0) or(i==R-1 && j>0)) mat[i][j] = '-';
+				else{
+					if(j==C/2 && i>0 && i<R-1) mat[i][j] = '|';
+					else{
+						if(j==0 && (i==R/2-1 || i==R/2+1)) mat[i][j] = '-';
+						else{
+							mat[i][j] = ' ';
+						}
+						
+					}
+					
+				}
+			}
+		
+         }       
+      }               
+      if(cosa)
+      {             
+         cout << endl;   
+      }   
+   }                  
+   cout << endl;   
+}
+
+int main(int argc, char *argv[])
+{
+	bool running = true;
+    char mosse[100]; 
+    int cont = 0;
+	srand(time(0));
+    char matrice[R][C]; 
+    int si=5,sj=1, n, n2, si2=5, sj2=28;
+    int conta=0, conta2=0, rand1, rand2;
+    do{
+        rand1 = rand()%10;
+    	rand2 = rand()%20;	
+	}while(rand1 == 4 && rand2 == 4);
+
+    
+    vedimatrice(matrice,false,si,sj, rand1, rand2, si2, sj2);
+
+    char scelta='v';
+
+    while(running)
+    {
+       system("CLS");
+
+       vedimatrice(matrice,true,si,sj, rand1, rand2, si2, sj2);
+       
+       cout << "w-nord  s-sud  a-ovest  d-est  q-nord-ovest  e-nord-est  x-sud-est  z-sud-ovest" << endl;                
+       cout << "f-fine" << endl;                
+       cout << "mosse:" << conta << endl;
+	   cout<<  "Segnalini ragiunti:"<<conta2<<endl;                
+       cout << endl << "Scelta :";                
+       scelta = 'b';
+           
+       
+        if (_kbhit()) {
+			scelta = getch();
+            if (scelta == 'f') {
+                running = false;
+            }
+        }
+
+        if (cont < 100 && cont%5==0) {
+            int r = rand() % 4; 
+
+            switch (r) {
+                case 0: mosse[cont] = 'i'; break;
+                case 1: mosse[cont] = 'j'; break;
+                case 2: mosse[cont] = 'k'; break;
+                case 3: mosse[cont] = 'l'; break;
+                
+            }
+            switch(mosse[cont])
+            {
+            	case 'i':
+          {
+             if(si2>0)
+             {  
+                si2--;  
+                conta2++;
+             }
+			 else{
+			 	si2 = R-1;
+			 }   
+             break;
+          }                           
+          case 'k':
+          {
+             if(si2<R-1)
+             {  
+                si2++;  
+                conta2++;
+             }
+			 else{
+			 	si2 = 0;
+			 }     
+             break;
+          }                           
+          case 'j':
+          {
+             if(sj2>0)
+             {  
+                sj2--;  
+                conta2++;
+             }
+			 else{
+			 	sj2 = C-1;
+			 }     
+             break;
+          }                           
+          case 'l':
+          {
+             if(sj2<C-1)
+             {  
+                sj2++;  
+                conta2++;
+             }
+			 else{
+			 	sj2 = 0;
+			 }     
+             break;
+          }
+		  case 'u':
+          {
+             if(si2>0 && sj2>0)
+             {  
+                si2--;  
+                sj2--;
+                conta2++;
+             }
+			 else{
+			 	n = si2;
+			 	n2 = sj2;
+			 	si2 = R-n2;
+			 	sj2 = C-n;
+			 	si2--;
+			 	sj2--;
+			 	conta2++;
+			 }   
+             break;
+          }
+		  case 'o':
+          {
+             if(si2>0 && sj2<C-1)
+             {  
+                si2--; 
+				sj2++; 
+                conta2++;
+             }
+			 else{
+			 	n = sj2;
+			 	sj2 = si2;
+			 	si2 = n;
+			 	conta2++;
+			 }      
+             break;
+          }
+		  case 'm':
+          {
+             if(sj2<C-1 && si2<R-1)
+             {  
+             	si2++;
+                sj2++;  
+                conta2++;
+             }   
+             else{
+			 	n = si2;
+			 	n2 = sj2;
+			 	si2 = R-n2;
+			 	sj2 = C-n;
+			 	si2--;
+			 	sj2--;
+			 	conta2++;
+			 }   
+             break;
+          }
+		  case 'n':
+          {
+             if(sj2>0 && si2<R-1)
+             {  
+             	si2++;
+                sj2--;  
+                conta2++;
+             }   
+             else{
+			 	n = si2;
+			 	si2 = sj2;
+			 	sj2 = n;
+			 	conta2++;
+			 }   
+             break;
+          }           
+			}
+            cont++;
+        } else{
+        	cont++;
+		}
+		switch(scelta)
+       		{
+          case 'w':
+          {
+             if(si>0)
+             {  
+                si--;  
+                conta++;
+             }
+			 else{
+			 	si = R-1;
+			 }   
+             break;
+          }                           
+          case 's':
+          {
+             if(si<R-1)
+             {  
+                si++;  
+                conta++;
+             }
+			 else{
+			 	si = 0;
+			 }     
+             break;
+          }                           
+          case 'a':
+          {
+             if(sj>0)
+             {  
+                sj--;  
+                conta++;
+             }
+			 else{
+			 	sj = C-1;
+			 }     
+             break;
+          }                           
+          case 'd':
+          {
+             if(sj<C-1)
+             {  
+                sj++;  
+                conta++;
+             }
+			 else{
+			 	sj = 0;
+			 }     
+             break;
+          }
+		  case 'q':
+          {
+             if(si>0 && sj>0)
+             {  
+                si--;  
+                sj--;
+                conta++;
+             }
+			 else{
+			 	n = si;
+			 	n2 = sj;
+			 	si = R-n2;
+			 	sj = C-n;
+			 	si--;
+			 	sj--;
+			 	conta++;
+			 }   
+             break;
+          }
+		  case 'e':
+          {
+             if(si>0 && sj<C-1)
+             {  
+                si--; 
+				sj++; 
+                conta++;
+             }
+			 else{
+			 	n = sj;
+			 	sj = si;
+			 	si = n;
+			 	conta++;
+			 }      
+             break;
+          }
+		  case 'x':
+          {
+             if(sj<C-1 && si<R-1)
+             {  
+             	si++;
+                sj++;  
+                conta++;
+             }   
+             else{
+			 	n = si;
+			 	n2 = sj;
+			 	si = R-n2;
+			 	sj = C-n;
+			 	si--;
+			 	sj--;
+			 	conta++;
+			 }   
+             break;
+          }
+		  case 'z':
+          {
+             if(sj>0 && si<R-1)
+             {  
+             	si++;
+                sj--;  
+                conta++;
+             }   
+             else{
+			 	n = si;
+			 	si = sj;
+			 	sj = n;
+			 	conta++;
+			 }   
+             break;
+          } 
+		                     
+       }
+        Sleep(200); 
+    }
+       
+       
+	   if(si == rand1 && sj == rand2){
+	   	conta2++;
+	   	do{
+		rand1 = rand()%10;
+		rand2 = rand()%20;
+		}while((rand1==si && rand2==sj) or ((rand1==si2 && rand2==sj2)));
+	}
+	else{
+		if(si2 == rand1 && sj2 == rand2){
+	   	conta2++;
+	   	do{
+		rand1 = rand()%10;
+		rand2 = rand()%20;
+		}while((rand1==si2 && rand2==sj2)or (rand1==si && rand2==sj));
+	}                  
+    }
+
+
+	            
+    cout << endl;
+        
+    system("PAUSE");
+    return EXIT_SUCCESS;
+}
