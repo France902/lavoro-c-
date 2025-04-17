@@ -1,4 +1,4 @@
- #include <cstdlib>
+#include <cstdlib>
 #include <iostream>
 #include <conio.h>
 #include <ctime>
@@ -40,17 +40,18 @@ void vedimatrice(char mat[R][C], bool cosa, int r, int c, int rand1, int rand2, 
          }
          else
          {
-         	if(j==0 || j==C-1) mat[i][j] = '|';
+         	if(j==0 || j==C-1){
+         		 mat[i][j] = '|';
+         		if(i==R/2-1 || i==R/2+1) mat[i][j] = '-';
+         		if(i==R/2) mat[i][j] = ' ';
+         		
+			 }
 			else{
 			 	if((i==0 && j>0) or(i==R-1 && j>0)) mat[i][j] = '-';
 				else{
-					if(j==C/2 && i>0 && i<R-1) mat[i][j] = '|';
+					if(j==C/2 && i>0 && i<R-1) 	mat[i][j] = '|';
 					else{
-						if(j==0 && (i==R/2-1 || i==R/2+1)) mat[i][j] = '-';
-						else{
-							mat[i][j] = ' ';
-						}
-						
+						mat[i][j] = ' ';
 					}
 					
 				}
