@@ -89,9 +89,9 @@ int main(int argc, char *argv[])
 
        vedimatrice(matrice, true, si, sj, si2, sj2);
        
-       cout << "w-sopra  s-sotto  a-sinistra  d-destra  q-alto-sinistra  e-alto-destra  x-basso-destra  z-basso-sinistra" << endl;
-       cout << "i-sopra  k-sotto  j-sinistra  l-destra  u-alto-sinistra  o-alto-destra  n-basso-destra  m-basso-sinistra" << endl;
-       cout << "f-fine" << endl;
+       cout << "  g1:  w-sopra  s-sotto  a-sinistra  d-destra  q-alto-sinistra  e-alto-destra  x-basso-destra  z-basso-sinistra" << endl;
+       cout << "\n  g2:  i-sopra  k-sotto  j-sinistra  l-destra  u-alto-sinistra  o-alto-destra  n-basso-destra  m-basso-sinistra" << endl;
+       cout << "\n f-fine" << endl;
        cout << endl << "Scelta :";
         scelta = ' ';
        scelta2 = ' ';
