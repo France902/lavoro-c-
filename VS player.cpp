@@ -262,7 +262,6 @@ int main(int argc, char *argv[])
 		      }
 		      break;
 		}
-       Sleep(200);
     }
 
     cout << endl;
