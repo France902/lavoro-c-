@@ -92,8 +92,8 @@ int main()
     	
         system("CLS");
         vedimatrice(matrice, true, si, sj, si2, sj2, pi, pj);
-        cout << "w-sopra  s-sotto  a-sinistra  d-destra  q-alto-sinistra  e-alto-destra  x-basso-destra  z-basso-sinistra r-tira " << endl;
-        cout << "i-sopra  k-sotto  j-sinistra  l-destra  u-alto-sinistra  o-alto-destra  n-basso-destra  m-basso-sinistra p-tira " << endl;
+        cout << "w-sopra  s-sotto  a-sinistra  d-destra  q-alto-sinistra  e-alto-destra  x-basso-destra  z-basso-sinistra  r-tira " << endl;
+        cout << "i-sopra  k-sotto  j-sinistra  l-destra  u-alto-sinistra  o-alto-destra  n-basso-destra  m-basso-sinistra  p-tira " << endl;
         cout << "f-fine" << endl;
         cout<<"Fai 5 gol prima del tuo avversario! "<<endl;
         cout << "Gol Giocatore 1: " << gol1 << "   Gol Giocatore 2: " << gol2 << endl;
