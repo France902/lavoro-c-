@@ -1,6 +1,6 @@
 //Importazioni librerie
 #include <iostream>
-#include <conio.h> //Libreria per la funzione getch(), che non prevede il premere invio per compilare un input (char) e kbhit(), che controlla se un tasto è stato premuto senza fermare il programma
+#include <conio.h> //Libreria per la funzione getch(), che non prevede il premere invio per compilare un input (char) e kbhit(), che controlla se un tasto Ã¨ stato premuto senza fermare il programma
 #include <windows.h> //Libreria per strchr(), che ricerca una lettera in una variabile, restituendo un valore booleano
 
 //Dichiarazioni delle costanti, per la dimensione del campo
