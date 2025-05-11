@@ -214,7 +214,8 @@ int main()
             		pj = sj;
 				}
 				 }
-            case 'i': 
+				 break;
+            case 'i':
 			    if (si2 > 0) {
 			    	 si2--; 
 			        cond2 = true;
