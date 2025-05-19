@@ -1,3 +1,4 @@
+
 //Importazioni librerie
 #include <iostream>
 #include <conio.h> //Libreria per la funzione getch(), che non prevede il premere invio per compilare un input (char) e kbhit(), che controlla se un tasto è stato premuto senza fermare il programma
@@ -81,7 +82,7 @@ int main()
 	if(vittoria == false){
 		//Inizio gioco
     	cout<<"Benvenuti in FIFA++ "<<endl;
-    	cout<<"Chiama un amico e premi un tasto per iniziare!"<<endl;
+    	cout<<"Chiama un amico o utilizza 2 mani e premi un tasto per iniziare!"<<endl;
     	system("PAUSE");
 	}
     vedimatrice(matrice, false, si, sj, si2, sj2, pi, pj);
@@ -92,8 +93,8 @@ int main()
     	
         system("CLS");
         vedimatrice(matrice, true, si, sj, si2, sj2, pi, pj);
-        cout << "w-sopra  s-sotto  a-sinistra  d-destra  q-alto-sinistra  e-alto-destra  x-basso-destra  z-basso-sinistra  r-tira " << endl;
-        cout << "i-sopra  k-sotto  j-sinistra  l-destra  u-alto-sinistra  o-alto-destra  n-basso-destra  m-basso-sinistra  p-tira " << endl;
+        cout << "w-sopra  s-sotto  a-sinistra  d-destra  q-alto-sinistra  e-alto-destra  x-basso-destra  z-basso-sinistra r-tira " << endl;
+        cout << "i-sopra  k-sotto  j-sinistra  l-destra  u-alto-sinistra  o-alto-destra  n-basso-destra  m-basso-sinistra p-tira " << endl;
         cout << "f-fine" << endl;
         cout<<"Fai 5 gol prima del tuo avversario! "<<endl;
         cout << "Gol Giocatore 1: " << gol1 << "   Gol Giocatore 2: " << gol2 << endl;
@@ -124,7 +125,6 @@ int main()
         	if(possesso == 1){
         		possesso = 0;
             	pj = pj + 3;
-            	
             	if((sj2 == pj || sj2 == pj-1 || sj2 == pj-2 || sj2 == pj-3) && si2 == pi){
             		possesso = 2;
             		pj = sj2;
@@ -134,22 +134,17 @@ int main()
         case 'w': 
 		    if (si > 0){
 		    	cond = true;
+		    	cond2 = false;
 		        si--; 
 			} 	
-		    else{
-		    	cond = true;
-			}
-		    
 		    break;
 		
 		case 's': 
 		    if (si < R - 1){
 		    	cond = true;
+		    	cond2 = false;
 		        si++; 
 			} 
-		    else {
-		    	cond = true;
-			}
 		    break;
 		
 		case 'a': 
@@ -213,34 +208,30 @@ int main()
             		possesso = 1;
             		pj = sj;
 				}
-				 }
-				 break;
-            case 'i':
+				}
+				break;
+            case 'i': 
 			    if (si2 > 0) {
 			    	 si2--; 
 			        cond2 = true;
-				}
-			    else{
-			        cond2 = true;
+			        cond = false;
 				}
 			    break;
 			case 'k': 
 			    if (si2 < R - 1) {
 			    	 si2++; 
 			        cond2 = true;
-				}
-			    else{
-			    	cond2 = true;
+			        cond = false;
 				}
 			    break;
 			case 'j': 
 			if(possesso == 2){
-				if (sj2 > 1 && (sj != sj2-1 or si2 != si)){
+				if (sj2 > 0 && (sj != sj2-1 or si2 != si)){
 			    	cond2 = false;
 			        sj2--; 
 				} 
 			}
-			else  if (sj2 > 0 && (sj != sj2-1 or si2 != si)){
+			else if (sj2 > 0 && (sj != sj2-1 or si2 != si)){
 			    	cond2 = false;
 			        sj2--; 
 				} 
@@ -314,7 +305,7 @@ int main()
         
 
         // Controllo dei goal
-        if (pj <= 0 && pi >= R / 2 - 1 && pi <= R / 2 + 1)  // Giocatore 2 segna (porta di sinistra)
+        if (pj <= 1 && pi >= R / 2 - 1 && pi <= R / 2 + 1)  // Giocatore 2 segna (porta di sinistra)
         {
             gol2++;
             cout << "GOAL del GIOCATORE 2!" << endl;
